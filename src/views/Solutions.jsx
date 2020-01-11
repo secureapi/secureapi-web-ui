@@ -28,7 +28,7 @@ import {
   Col
 } from "reactstrap";
 
-class Tables extends React.Component {
+class Solution extends React.Component {
   render() {
     return (
       <>
@@ -37,45 +37,37 @@ class Tables extends React.Component {
             <Col md="12">
               <Card className="card-plain">
                 <CardHeader>
-                  <CardTitle tag="h4">Your Tests</CardTitle>
-                  <p className="category">We keep only failed tests.</p>
+                  <CardTitle tag="h4">Solutions</CardTitle>
+                  <p className="category">Severity: <i className="tim-icons icon-alert-circle-exc"> High</i></p>
                 </CardHeader>
                 <CardBody>
                   <Table className="tablesorter" responsive>
                     <thead className="text-primary">
                       <tr>
-                        <th>Suite ID</th>
+                        <th>Severity</th>
                         <th>Test Code</th>
-                        <th>Tested URL</th>
-                        <th>Result</th>
-                        <th>Timestamp</th>
-                        <th className="text-center">Solution</th>
+                        <th>Name</th>
+                        <th>Solution</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>345dfasdf3</td>
+                        <td className="text-danger"><i className="tim-icons icon-alert-circle-exc"></i></td>
                         <td>SEC0001</td>
-                        <td>http://myuglywebiste.com/api/v1/</td>
-                        <td className="text-danger"><i className="tim-icons icon-alert-circle-exc"></i> FAILED</td>
-                        <td>10 Jan 2020 11:21:33 AM</td>
-                        <td className="text-center">SEC0001 Solution</td>
+                        <td>X-Content-Type-Options: no-sniff</td>
+                        <td>No sniffing around!</td>
                       </tr>
                       <tr>
-                        <td>345dfasdf3</td>
+                        <td className="text-danger"><i className="tim-icons icon-alert-circle-exc"></i></td>
                         <td>SEC0002</td>
-                        <td>http://myuglywebiste.com/api/v1/</td>
-                        <td className="text-danger"><i className="tim-icons icon-alert-circle-exc"></i> FAILED</td>
-                        <td>10 Jan 2020 11:21:31 AM</td>
-                        <td className="text-center">SEC0002 Solution</td>
+                        <td>X-Frame-Options: deny</td>
+                        <td>Set X-Frame-Options header to deny.</td>
                       </tr>
                       <tr>
-                        <td>345dfasdf3</td>
+                        <td className="text-danger"><i className="tim-icons icon-alert-circle-exc"></i></td>
                         <td>SEC0003</td>
-                        <td>http://myuglywebiste.com/api/v1/</td>
-                        <td className="text-danger"><i className="tim-icons icon-alert-circle-exc"></i> FAILED</td>
-                        <td>10 Jan 2020 11:21:31 AM</td>
-                        <td className="text-center">SEC0003 Solution</td>
+                        <td>X-XSS-Protection: 1; mode=block</td>
+                        <td>Set X-Xss-Protection header to "1;mode-block"</td>
                       </tr>
                     </tbody>
                   </Table>
@@ -89,4 +81,4 @@ class Tables extends React.Component {
   }
 }
 
-export default Tables;
+export default Solution;

@@ -235,4 +235,64 @@ class AdminNavbar extends React.Component {
   }
 }
 
-export default AdminNavbar;
+class SimpleNavbar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      collapseOpen: false,
+      modalSearch: false,
+      color: "navbar-transparent"
+    };
+  }
+  render() {
+    return (
+      <>
+        <Navbar
+          className={classNames("navbar-absolute", this.state.color)}
+          expand="lg"
+        >
+          <Container fluid>
+            <div className="navbar-wrapper">
+              <div
+                className={classNames("navbar-toggle d-inline", {
+                  toggled: "SecureAPI"
+                })}
+              >
+                <button
+                  className="navbar-toggler"
+                  type="button"
+                  onClick={this.props.toggleSidebar}
+                >
+                  <span className="navbar-toggler-bar bar1" />
+                  <span className="navbar-toggler-bar bar2" />
+                  <span className="navbar-toggler-bar bar3" />
+                </button>
+              </div>
+              <NavbarBrand href="#pablo" onClick={e => e.preventDefault()}>
+                {this.props.brandText}
+              </NavbarBrand>
+            </div>
+            <button
+              aria-expanded={false}
+              aria-label="Toggle navigation"
+              className="navbar-toggler"
+              data-target="#navigation"
+              data-toggle="collapse"
+              id="navigation"
+              type="button"
+              onClick={this.toggleCollapse}
+            >
+              <span className="navbar-toggler-bar navbar-kebab" />
+              <span className="navbar-toggler-bar navbar-kebab" />
+              <span className="navbar-toggler-bar navbar-kebab" />
+            </button>
+          </Container>
+        </Navbar>
+      </>
+    );
+  }
+}
+
+// export default AdminNavbar;
+export default SimpleNavbar;
+

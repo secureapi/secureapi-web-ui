@@ -29,6 +29,7 @@ import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
 import routes from "routes.js";
 
 import logo from "assets/img/react-logo.png";
+import SimpleNavbar from "../../components/Navbars/AdminNavbar";
 
 var ps;
 
@@ -116,8 +117,8 @@ class Admin extends React.Component {
             routes={routes}
             bgColor={this.state.backgroundColor}
             logo={{
-              outterLink: "https://www.creative-tim.com/",
-              text: "Creative Tim",
+              outterLink: "https://www.secureapi.dev",
+              text: "SecureAPI",
               imgSrc: logo
             }}
             toggleSidebar={this.toggleSidebar}
@@ -127,12 +128,12 @@ class Admin extends React.Component {
             ref="mainPanel"
             data={this.state.backgroundColor}
           >
-            <AdminNavbar
-              {...this.props}
-              brandText={this.getBrandText(this.props.location.pathname)}
-              toggleSidebar={this.toggleSidebar}
-              sidebarOpened={this.state.sidebarOpened}
-            />
+            {/*<SimpleNavbar*/}
+            {/*  {...this.props}*/}
+            {/*  brandText={this.getBrandText(this.props.location.pathname)}*/}
+            {/*  toggleSidebar={this.toggleSidebar}*/}
+            {/*  sidebarOpened={this.state.sidebarOpened}*/}
+            {/*/>*/}
             <Switch>{this.getRoutes(routes)}</Switch>
             {// we don't want the Footer to be rendered on map page
             this.props.location.pathname.indexOf("maps") !== -1 ? null : (
@@ -140,10 +141,6 @@ class Admin extends React.Component {
             )}
           </div>
         </div>
-        <FixedPlugin
-          bgColor={this.state.backgroundColor}
-          handleBgClick={this.handleBgClick}
-        />
       </>
     );
   }
