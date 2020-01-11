@@ -68,7 +68,7 @@ class Sidebar extends React.Component {
             onClick={this.props.toggleSidebar}
           >
             <div className="logo-img">
-              <img src={logo.imgSrc} alt="react-logo" />
+              <i className="tim-icons icon-key-25"></i>
             </div>
           </a>
         );
@@ -146,7 +146,7 @@ class Sidebar extends React.Component {
 
 Sidebar.defaultProps = {
   rtlActive: false,
-  bgColor: "primary",
+  bgColor: "blue",
   routes: [{}]
 };
 
@@ -154,7 +154,7 @@ Sidebar.propTypes = {
   // if true, then instead of the routes[i].name, routes[i].rtlName will be rendered
   // insde the links of this component
   rtlActive: PropTypes.bool,
-  bgColor: PropTypes.oneOf(["primary", "blue", "green"]),
+  bgColor: PropTypes.oneOf(["blue", "green", "gray-600"]),
   routes: PropTypes.arrayOf(PropTypes.object),
   logo: PropTypes.shape({
     // innerLink is for links that will direct the user within the app

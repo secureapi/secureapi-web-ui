@@ -16,7 +16,7 @@
 
 */
 import React from "react";
-
+import cookie from 'react-cookies'
 // reactstrap components
 import {
   Button,
@@ -29,11 +29,44 @@ import {
   Form,
   Input,
   Row,
-  Col
+  Col,
 } from "reactstrap";
 
 class UserProfile extends React.Component {
+  componentDidMount() {
+    fetch("http://localhost:8072/users/mock")
+      .then(response => response.json())
+      .then(data => this.setState({
+        user: {
+          username: data.username,
+          access_key: data.access_key,
+          email: data.email,
+          password: data.password,
+          company: data.company,
+          first_name: data.first_name,
+          last_name: data.last_name,
+        },
+      }));
+
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: {
+        username: "hidalgopl",
+        access_key: "*******************",
+        email: "pbojanowski@protonmail.com",
+        password: "********************",
+        company: "SecureAPI",
+        first_name: "Paweł",
+        last_name: "Bojanowski",
+      },
+    };
+  }
+
   render() {
+    const { user } = this.state;
     return (
       <>
         <div className="content">
@@ -46,23 +79,11 @@ class UserProfile extends React.Component {
                 <CardBody>
                   <Form>
                     <Row>
-                      <Col className="pr-md-1" md="5">
-                        <FormGroup>
-                          <label>Company (disabled)</label>
-                          <Input
-                            defaultValue="Creative Code Inc."
-                            disabled
-                            placeholder="Company"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col className="px-md-1" md="3">
+                      <Col className="pr-md-1" md="3">
                         <FormGroup>
                           <label>Username</label>
                           <Input
-                            defaultValue="michael23"
-                            placeholder="Username"
+                            placeholder={user.username}
                             type="text"
                           />
                         </FormGroup>
@@ -70,9 +91,9 @@ class UserProfile extends React.Component {
                       <Col className="pl-md-1" md="4">
                         <FormGroup>
                           <label htmlFor="exampleInputEmail1">
-                            Email address
+                            Email
                           </label>
-                          <Input placeholder="mike@email.com" type="email" />
+                          <Input placeholder={user.email} type="email"/>
                         </FormGroup>
                       </Col>
                     </Row>
@@ -81,8 +102,7 @@ class UserProfile extends React.Component {
                         <FormGroup>
                           <label>First Name</label>
                           <Input
-                            defaultValue="Mike"
-                            placeholder="Company"
+                            placeholder={user.first_name}
                             type="text"
                           />
                         </FormGroup>
@@ -91,63 +111,38 @@ class UserProfile extends React.Component {
                         <FormGroup>
                           <label>Last Name</label>
                           <Input
-                            defaultValue="Andrew"
-                            placeholder="Last Name"
+                            placeholder={user.last_name}
                             type="text"
                           />
                         </FormGroup>
                       </Col>
                     </Row>
                     <Row>
-                      <Col md="12">
+                      <Col className="pr-md-1" md="5">
                         <FormGroup>
-                          <label>Address</label>
+                          <label>Company</label>
                           <Input
-                            defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                            placeholder="Home Address"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col className="pr-md-1" md="4">
-                        <FormGroup>
-                          <label>City</label>
-                          <Input
-                            defaultValue="Mike"
-                            placeholder="City"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col className="px-md-1" md="4">
-                        <FormGroup>
-                          <label>Country</label>
-                          <Input
-                            defaultValue="Andrew"
-                            placeholder="Country"
+                            placeholder={user.company}
                             type="text"
                           />
                         </FormGroup>
                       </Col>
                       <Col className="pl-md-1" md="4">
                         <FormGroup>
-                          <label>Postal Code</label>
-                          <Input placeholder="ZIP Code" type="number" />
+                          <label htmlFor="exampleInputPassword">
+                            Password
+                          </label>
+                          <Input placeholder={user.password} type="password"/>
                         </FormGroup>
                       </Col>
                     </Row>
                     <Row>
-                      <Col md="8">
+                      <Col className="pr-md-1" md="8">
                         <FormGroup>
-                          <label>About Me</label>
+                          <label>Access Key</label>
                           <Input
-                            cols="80"
-                            defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in
-                            that two seat Lambo."
-                            placeholder="Here can be your description"
-                            rows="4"
+                            cols="40"
+                            placeholder={user.access_key}
                             type="textarea"
                           />
                         </FormGroup>
@@ -156,7 +151,7 @@ class UserProfile extends React.Component {
                   </Form>
                 </CardBody>
                 <CardFooter>
-                  <Button className="btn-fill" color="primary" type="submit">
+                  <Button className="btn-fill" color="blue" type="submit">
                     Save
                   </Button>
                 </CardFooter>
@@ -165,12 +160,12 @@ class UserProfile extends React.Component {
             <Col md="4">
               <Card className="card-user">
                 <CardBody>
-                  <CardText />
+                  <CardText/>
                   <div className="author">
-                    <div className="block block-one" />
-                    <div className="block block-two" />
-                    <div className="block block-three" />
-                    <div className="block block-four" />
+                    <div className="block block-one"/>
+                    <div className="block block-two"/>
+                    <div className="block block-three"/>
+                    <div className="block block-four"/>
                     <a href="#pablo" onClick={e => e.preventDefault()}>
                       <img
                         alt="..."
@@ -190,13 +185,13 @@ class UserProfile extends React.Component {
                 <CardFooter>
                   <div className="button-container">
                     <Button className="btn-icon btn-round" color="facebook">
-                      <i className="fab fa-facebook" />
+                      <i className="fab fa-facebook"/>
                     </Button>
                     <Button className="btn-icon btn-round" color="twitter">
-                      <i className="fab fa-twitter" />
+                      <i className="fab fa-twitter"/>
                     </Button>
                     <Button className="btn-icon btn-round" color="google">
-                      <i className="fab fa-google-plus" />
+                      <i className="fab fa-google-plus"/>
                     </Button>
                   </div>
                 </CardFooter>

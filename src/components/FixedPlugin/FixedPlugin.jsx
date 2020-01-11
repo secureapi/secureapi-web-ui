@@ -57,17 +57,6 @@ class FixedPlugin extends Component {
               <div className="badge-colors text-center">
                 <span
                   className={
-                    this.props.bgColor === "primary"
-                      ? "badge filter badge-primary active"
-                      : "badge filter badge-primary"
-                  }
-                  data-color="primary"
-                  onClick={() => {
-                    this.props.handleBgClick("primary");
-                  }}
-                />{" "}
-                <span
-                  className={
                     this.props.bgColor === "blue"
                       ? "badge filter badge-info active"
                       : "badge filter badge-info"
