@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@types/react": "16.9.23",
+    "axios": "^0.19.2",
     "bootstrap": "4.4.1",
     "chart.js": "^2.7.2",
     "classnames": "2.2.6",

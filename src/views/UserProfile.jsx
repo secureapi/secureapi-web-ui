@@ -32,23 +32,6 @@ import {
 } from "reactstrap";
 
 class UserProfile extends React.Component {
-  componentDidMount() {
-    fetch("http://localhost:8072/users/mock")
-      .then(response => response.json())
-      .then(data => this.setState({
-        user: {
-          username: data.username,
-          access_key: data.access_key,
-          email: data.email,
-          password: data.password,
-          company: data.company,
-          first_name: data.first_name,
-          last_name: data.last_name,
-        },
-      }));
-
-  }
-
   constructor(props) {
     super(props);
     this.state = {
