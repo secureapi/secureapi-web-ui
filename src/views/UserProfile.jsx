@@ -16,7 +16,6 @@
 
 */
 import React from "react";
-import cookie from 'react-cookies'
 // reactstrap components
 import {
   Button,
