@@ -47,7 +47,6 @@ class Admin extends React.Component {
         ps = new PerfectScrollbar(tables[i]);
       }
     }
-    console.dir(process.env.REACT_APP_GITHUB_CLIENT_ID)
   }
   componentWillUnmount() {
     if (navigator.platform.indexOf("Win") > -1) {

@@ -1,9 +1,9 @@
 import { apiInstance } from './api';
 
 export default {
-  exchangeAccessToken: ({ socialType, accessToken }) => apiInstance.request({
-    method: 'GET',
-    url: `/users/social/${socialType}/`,
+  exchangeAccessToken: ({ platform, accessToken }) => apiInstance.request({
+    method: 'POST',
+    url: `/users/social/${platform}/`,
     data: {
       access_token: accessToken
     }
