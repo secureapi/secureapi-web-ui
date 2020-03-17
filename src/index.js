@@ -6,6 +6,7 @@ import { Router, Route, Switch, Redirect } from "react-router-dom";
 import AdminLayout from "layouts/Admin/Admin.jsx";
 import Login from 'views/Login';
 import StoreProvider from "store/StoreProvider";
+import UnauthorizedRoute from 'routes/UnauthorizedRoute';
 
 import "assets/scss/black-dashboard-react.scss";
 import "assets/demo/demo.css";
@@ -17,7 +18,7 @@ ReactDOM.render(
   <StoreProvider.Provider>
     <Router history={hist}>
       <Switch>
-        <Route exact path={["/login/:platform", "/login"]} component={Login} />
+        <UnauthorizedRoute exact path={["/login/:platform", "/login"]} component={Login} />
         <Route path="/admin" render={props => <AdminLayout {...props} />} />
         <Redirect from="/" to="/admin/dashboard" />
       </Switch>

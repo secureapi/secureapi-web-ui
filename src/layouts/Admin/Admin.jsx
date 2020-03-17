@@ -16,9 +16,11 @@
 
 */
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Switch } from "react-router-dom";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
+
+import UserProtectedRoute from 'routes/UserProtectedRoute';
 
 // core components
 import Footer from "components/Footer/Footer.jsx";
@@ -77,7 +79,7 @@ class Admin extends React.Component {
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
         return (
-          <Route
+          <UserProtectedRoute
             path={prop.layout + prop.path}
             component={prop.component}
             key={key}

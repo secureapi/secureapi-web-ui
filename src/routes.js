@@ -22,7 +22,7 @@ import Solution from "./views/Solutions";
 import Typography from "views/Typography.jsx";
 import UserProfile from "views/UserProfile.jsx";
 
-var routes = [
+const routes = [
   {
     path: "/tables",
     name: "Tests",

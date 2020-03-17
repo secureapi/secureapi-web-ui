@@ -8,4 +8,12 @@ export default {
       access_token: accessToken
     }
   }),
+  exchangeCode: ({ code, state }) => apiInstance.request({
+    method: 'POST',
+    url: '/users/code/',
+    data: {
+      code,
+      state
+    }
+  }),
 }
