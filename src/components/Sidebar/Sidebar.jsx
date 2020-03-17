@@ -27,6 +27,8 @@ import PerfectScrollbar from "perfect-scrollbar";
 // reactstrap components
 import { Nav } from "reactstrap";
 
+import StoreProvider, { actions } from 'store/StoreProvider'
+
 var ps;
 
 class Sidebar extends React.Component {
@@ -137,6 +139,19 @@ class Sidebar extends React.Component {
                 </li>
               );
             })}
+            <li>
+              <NavLink
+                to="/logout"
+                className="nav-link"
+                onClick={(e) => {
+                  e.preventDefault();
+                  this.props.logoutUser();
+                }}
+              >
+                <i className="tim-icons icon-button-power" />
+                <p>{rtlActive ? "طباعة" : "Log Out"}</p>
+              </NavLink>
+            </li>
           </Nav>
         </div>
       </div>
@@ -170,4 +185,9 @@ Sidebar.propTypes = {
   })
 };
 
-export default Sidebar;
+export default StoreProvider.connect(
+  null,
+  {
+    logoutUser: actions.user.clearUser
+  }
+)(Sidebar);

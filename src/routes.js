@@ -19,7 +19,6 @@ import Icons from "views/Icons.jsx";
 import Notifications from "views/Notifications.jsx";
 import TableList from "views/TableList.jsx";
 import Solution from "./views/Solutions";
-import Typography from "views/Typography.jsx";
 import UserProfile from "views/UserProfile.jsx";
 
 const routes = [
@@ -61,14 +60,6 @@ const routes = [
     rtlName: "إخطارات",
     icon: "tim-icons icon-send",
     component: Notifications,
-    layout: "/admin"
-  },
-  {
-    path: "/typography",
-    name: "Log Out",
-    rtlName: "طباعة",
-    icon: "tim-icons icon-button-power",
-    component: Typography,
     layout: "/admin"
   }
 ];

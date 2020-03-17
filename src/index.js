@@ -4,7 +4,7 @@ import { createBrowserHistory } from "history";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 
 import AdminLayout from "layouts/Admin/Admin.jsx";
-import Login from 'views/Login';
+import Login from 'views/Login/Login';
 import StoreProvider from "store/StoreProvider";
 import UnauthorizedRoute from 'routes/UnauthorizedRoute';
 
