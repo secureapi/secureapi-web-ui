@@ -16,20 +16,17 @@
 
 */
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Switch } from "react-router-dom";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 
+import UserProtectedRoute from 'routes/UserProtectedRoute';
+
 // core components
-import AdminNavbar from "components/Navbars/AdminNavbar.jsx";
 import Footer from "components/Footer/Footer.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
-import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
-
 import routes from "routes.js";
-
 import logo from "assets/img/react-logo.png";
-import SimpleNavbar from "../../components/Navbars/AdminNavbar";
 
 var ps;
 
@@ -82,7 +79,7 @@ class Admin extends React.Component {
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
         return (
-          <Route
+          <UserProtectedRoute
             path={prop.layout + prop.path}
             component={prop.component}
             key={key}
@@ -128,12 +125,6 @@ class Admin extends React.Component {
             ref="mainPanel"
             data={this.state.backgroundColor}
           >
-            {/*<SimpleNavbar*/}
-            {/*  {...this.props}*/}
-            {/*  brandText={this.getBrandText(this.props.location.pathname)}*/}
-            {/*  toggleSidebar={this.toggleSidebar}*/}
-            {/*  sidebarOpened={this.state.sidebarOpened}*/}
-            {/*/>*/}
             <Switch>{this.getRoutes(routes)}</Switch>
             {// we don't want the Footer to be rendered on map page
             this.props.location.pathname.indexOf("maps") !== -1 ? null : (
