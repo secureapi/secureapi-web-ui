@@ -4,9 +4,11 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import user from './modules/user'
+import tests from './modules/tests'
 
 const appReducer = combineReducers({
-  user: user.reducer
+  user: user.reducer,
+  tests: tests.reducer
 });
 
 const rootReducer = (state, action) => appReducer(state, action)

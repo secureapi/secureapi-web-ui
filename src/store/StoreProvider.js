@@ -12,6 +12,7 @@ import storage from 'redux-persist/lib/storage';
 import store, { persistor } from './store';
 
 import user from './modules/user'
+import tests from './modules/tests'
 
 
 const StoreProvider = ({ children }) => (
@@ -21,11 +22,13 @@ const StoreProvider = ({ children }) => (
 );
 
 export const actions = {
-  user: user.actions
+  user: user.actions,
+  tests: tests.actions
 }
 
 export const selectors = {
-  user: user.selectors
+  user: user.selectors,
+  tests: tests.selectors
 }
 
 export default {
