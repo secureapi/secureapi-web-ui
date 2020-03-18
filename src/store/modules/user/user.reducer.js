@@ -17,8 +17,8 @@ export default createReducer(initialState, {
   [userActions.setToken.type]: (state, action) => {
     state.token = action.payload;
   },
-  [userActions.clearUser.type]: (state) => {
-    state.profile = initialState.profile;
-    state.token = initialState.token;
+  [userActions.setUserProfile.type]: (state, action) => {
+    state.profile = action.payload;
   },
+  [userActions.clearUser.type]: () => initialState,
 });

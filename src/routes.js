@@ -17,17 +17,17 @@
 */
 import Icons from "views/Icons.jsx";
 import Notifications from "views/Notifications.jsx";
-import TableList from "views/TableList.jsx";
+import Tests from "views/Tests";
 import Solution from "./views/Solutions";
 import UserProfile from "views/UserProfile.jsx";
 
 const routes = [
   {
-    path: "/tables",
+    path: "/tests",
     name: "Tests",
     rtlName: "قائمة الجدول",
     icon: "tim-icons icon-refresh-02",
-    component: TableList,
+    component: Tests,
     layout: "/admin"
   },
   {
