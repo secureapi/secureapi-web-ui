@@ -47,19 +47,20 @@ const Tests = ({ setTests, tests }) => {
                     </thead>
                     <tbody>
                       {
-                        tests.map(test => (
+                        tests.map(testsuite => (
+                            testsuite.tests.map(test =>
                         <tr key={test.id}>
                           <td>{test.id}</td>
-                          <td>SEC0001</td>
-                          <td>{test.url}</td>
+                          <td>{test.code}</td>
+                          <td>{testsuite.url}</td>
                           <td className="text-danger">
                             <i className="tim-icons icon-alert-circle-exc"/>
-                            FAILED
+                            {test.result}
                           </td>
-                          <td>10 Jan 2020 11:21:33 AM</td>
-                          <td className="text-center">{test.tests}</td>
+                          <td>{test.created}</td>
+                          <td className="text-center">{test.code}</td>
                         </tr>
-                        ))
+                        )))
                       }
                     </tbody>
                   </Table>
