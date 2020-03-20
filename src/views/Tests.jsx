@@ -49,8 +49,8 @@ const Tests = ({ setTests, tests }) => {
                       {
                         tests.map(testsuite => (
                             testsuite.tests.map(test =>
-                        <tr key={test.id}>
-                          <td>{test.id}</td>
+                        <tr key={testsuite.id}>
+                          <td>{testsuite.id}</td>
                           <td>{test.code}</td>
                           <td>{testsuite.url}</td>
                           <td className="text-danger">
