@@ -1,46 +1,30 @@
-/*!
-
-=========================================================
-* Black Dashboard React v1.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/black-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/black-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
-import { Switch } from "react-router-dom";
+import { Switch, Redirect } from "react-router-dom";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 
-import UserProtectedRoute from 'routes/UserProtectedRoute';
+import UserProtectedRoute from "routes/UserProtectedRoute";
 
 // core components
-import Footer from "components/Footer/Footer.jsx";
-import Sidebar from "components/Sidebar/Sidebar.jsx";
-import routes from "routes.js";
+import Footer from "components/Footer/Footer";
+import Sidebar from "components/Sidebar/Sidebar";
+import routes from "routes";
 import logo from "assets/img/react-logo.png";
 
 var ps;
 
-class Admin extends React.Component {
+class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       backgroundColor: "blue",
       sidebarOpened:
-        document.documentElement.className.indexOf("nav-open") !== -1
+        document.documentElement.className.indexOf("nav-open") !== -1,
     };
   }
   componentDidMount() {
-    if (navigator.platform.indexOf("Win") > -1) {
+    const { location } = this.props;
+    if (navigator.platform.indexOf("Win") > -1 && location.pathname !== "/") {
       document.documentElement.className += " perfect-scrollbar-on";
       document.documentElement.classList.remove("perfect-scrollbar-off");
       ps = new PerfectScrollbar(this.refs.mainPanel, { suppressScrollX: true });
@@ -51,8 +35,11 @@ class Admin extends React.Component {
     }
   }
   componentWillUnmount() {
-    if (navigator.platform.indexOf("Win") > -1) {
-      ps.destroy();
+    const { location } = this.props;
+    if (navigator.platform.indexOf("Win") > -1 && location.pathname !== "/") {
+      if (typeof ps !== "undefined") {
+        ps.destroy();
+      }
       document.documentElement.className += " perfect-scrollbar-off";
       document.documentElement.classList.remove("perfect-scrollbar-on");
     }
@@ -75,12 +62,12 @@ class Admin extends React.Component {
     document.documentElement.classList.toggle("nav-open");
     this.setState({ sidebarOpened: !this.state.sidebarOpened });
   };
-  getRoutes = routes => {
+  getRoutes = (routes) => {
     return routes.map((prop, key) => {
-      if (prop.layout === "/admin") {
+      if (prop.layout === "dashboard") {
         return (
           <UserProtectedRoute
-            path={prop.layout + prop.path}
+            path={prop.path}
             component={prop.component}
             key={key}
           />
@@ -90,10 +77,10 @@ class Admin extends React.Component {
       }
     });
   };
-  handleBgClick = color => {
+  handleBgClick = (color) => {
     this.setState({ backgroundColor: color });
   };
-  getBrandText = path => {
+  getBrandText = (path) => {
     for (let i = 0; i < routes.length; i++) {
       if (
         this.props.location.pathname.indexOf(
@@ -106,6 +93,12 @@ class Admin extends React.Component {
     return "Brand";
   };
   render() {
+    const { location } = this.props;
+
+    if (location.pathname === "/") {
+      return <Redirect from="/" to="/tests" />;
+    }
+
     return (
       <>
         <div className="wrapper">
@@ -116,7 +109,7 @@ class Admin extends React.Component {
             logo={{
               outterLink: "https://www.secureapi.dev",
               text: "SecureAPI",
-              imgSrc: logo
+              imgSrc: logo,
             }}
             toggleSidebar={this.toggleSidebar}
           />
@@ -137,4 +130,4 @@ class Admin extends React.Component {
   }
 }
 
-export default Admin;
+export default Dashboard;

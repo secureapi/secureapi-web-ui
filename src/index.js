@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
-import { Router, Route, Switch, Redirect } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 
-import AdminLayout from "layouts/Admin/Admin.jsx";
-import Login from 'views/Login/Login';
+import DashboardLayout from "layouts/Dashboard/Dashboard";
+import Login from "views/Login/Login";
 import StoreProvider from "store/StoreProvider";
-import UnauthorizedRoute from 'routes/UnauthorizedRoute';
+import UnauthorizedRoute from "routes/UnauthorizedRoute";
 
 import "assets/scss/black-dashboard-react.scss";
 import "assets/demo/demo.css";
@@ -18,9 +18,12 @@ ReactDOM.render(
   <StoreProvider.Provider>
     <Router history={hist}>
       <Switch>
-        <UnauthorizedRoute exact path={["/login/:platform", "/login"]} component={Login} />
-        <Route path="/admin" render={props => <AdminLayout {...props} />} />
-        <Redirect from="/" to="/admin/dashboard" />
+        <UnauthorizedRoute
+          exact
+          path={["/login/:platform", "/login"]}
+          component={Login}
+        />
+        <Route path="/" render={(props) => <DashboardLayout {...props} />} />
       </Switch>
     </Router>
   </StoreProvider.Provider>,
