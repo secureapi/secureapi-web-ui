@@ -15,6 +15,8 @@ import api from "api";
 import StoreProvider, { actions, selectors } from "store/StoreProvider";
 import { formatDate } from "utils";
 
+import "./Tests.scss";
+
 const Tests = () => {
   const dispatch = StoreProvider.useDispatch();
   const tests = StoreProvider.useSelector(selectors.tests.list);
@@ -27,7 +29,7 @@ const Tests = () => {
   }, []);
 
   return (
-    <div className="content">
+    <div className="tests-page content">
       <Row>
         <Col md="12">
           <Card className="card-plain">
@@ -40,7 +42,7 @@ const Tests = () => {
                 <Table className="tablesorter" responsive>
                   <thead className="text-primary">
                     <tr>
-                      <th>Result</th>
+                      <th></th>
                       <th>Suite ID</th>
                       <th>Tested URL</th>
                       <th>Timestamp</th>

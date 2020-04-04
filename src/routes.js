@@ -17,7 +17,7 @@
 */
 import Icons from "views/Icons.jsx";
 import Notifications from "views/Notifications.jsx";
-import Tests from "views/Tests";
+import Tests from "views/Tests/Tests";
 import Solution from "./views/Solutions/Solutions";
 import UserProfile from "views/UserProfile.jsx";
 
