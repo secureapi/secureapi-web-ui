@@ -12,6 +12,7 @@ import {
 
 import api from "api";
 import StoreProvider, { actions, selectors } from "store/StoreProvider";
+import { formatDate } from "utils";
 
 const Tests = () => {
   const dispatch = StoreProvider.useDispatch();
@@ -38,10 +39,9 @@ const Tests = () => {
                 <Table className="tablesorter" responsive>
                   <thead className="text-primary">
                     <tr>
-                      <th>Suite ID</th>
-                      <th>Test Code</th>
-                      <th>Tested URL</th>
                       <th>Result</th>
+                      <th>Suite ID</th>
+                      <th>Tested URL</th>
                       <th>Timestamp</th>
                       <th className="text-center">Solution</th>
                     </tr>
@@ -50,14 +50,12 @@ const Tests = () => {
                     {tests.map((testsuite) =>
                       testsuite.tests.map((test) => (
                         <tr key={testsuite.id}>
-                          <td>{testsuite.id}</td>
-                          <td>{test.code}</td>
-                          <td>{testsuite.url}</td>
                           <td className="text-danger">
                             <i className="tim-icons icon-alert-circle-exc" />
-                            {test.result}
                           </td>
-                          <td>{test.created}</td>
+                          <td>{testsuite.id}</td>
+                          <td>{testsuite.url}</td>
+                          <td>{formatDate(test.created)}</td>
                           <td className="text-center">{test.code}</td>
                         </tr>
                       ))

@@ -9,6 +9,7 @@
     "bootstrap": "4.4.1",
     "chart.js": "^2.7.2",
     "classnames": "2.2.6",
+    "date-fns": "^2.11.1",
     "history": "4.10.1",
     "md5": "^2.2.1",
     "node-sass": "^4.13.1",
