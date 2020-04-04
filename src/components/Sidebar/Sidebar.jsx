@@ -70,7 +70,7 @@ class Sidebar extends React.Component {
             onClick={this.props.toggleSidebar}
           >
             <div className="logo-img">
-              <i className="tim-icons icon-key-25"></i>
+              <img src={require("assets/img/logo64.png")}/>
             </div>
           </a>
         );

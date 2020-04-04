@@ -63,10 +63,9 @@ const Login = ({ history, match: { params }, location: { search }, setToken }) =
                 <div className="block block-three"/>
                 <div className="block block-four"/>
                 <div>
-                  <i class="fas fa-key"/>
-                  <h5 className="title">Secureapi</h5>
+                  <img src={require("assets/img/logo240.png")}/>
                 </div>
-                <p className="description">Login</p>
+                <p className="description"></p>
               </div>
               <div className="card-description">
                 To know what you know and what you do not know, that is true knowledge.
