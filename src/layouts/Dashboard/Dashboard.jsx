@@ -33,6 +33,7 @@ class Dashboard extends React.Component {
         ps = new PerfectScrollbar(tables[i]);
       }
     }
+    this.checkHash();
   }
   componentWillUnmount() {
     const { location } = this.props;
@@ -56,6 +57,7 @@ class Dashboard extends React.Component {
       document.scrollingElement.scrollTop = 0;
       this.refs.mainPanel.scrollTop = 0;
     }
+    this.checkHash();
   }
   // this function opens and closes the sidebar on small devices
   toggleSidebar = () => {
@@ -92,6 +94,20 @@ class Dashboard extends React.Component {
     }
     return "Brand";
   };
+  checkHash = () => {
+    const { location } = this.props;
+    if (location.hash) {
+      const mainWindow = document.querySelector("main");
+      const element = document.querySelector(location.hash);
+
+      setTimeout(() => {
+        mainWindow.scrollTo({
+          behavior: element ? "smooth" : "auto",
+          top: element ? element.offsetTop : 0,
+        });
+      }, 100);
+    }
+  };
   render() {
     const { location } = this.props;
 
@@ -113,7 +129,7 @@ class Dashboard extends React.Component {
             }}
             toggleSidebar={this.toggleSidebar}
           />
-          <div
+          <main
             className="main-panel"
             ref="mainPanel"
             data={this.state.backgroundColor}
@@ -123,7 +139,7 @@ class Dashboard extends React.Component {
             this.props.location.pathname.indexOf("maps") !== -1 ? null : (
               <Footer fluid />
             )}
-          </div>
+          </main>
         </div>
       </>
     );

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import {
   Card,
@@ -48,15 +49,24 @@ const Tests = () => {
                   </thead>
                   <tbody>
                     {tests.map((testsuite) =>
-                      testsuite.tests.map((test) => (
-                        <tr key={testsuite.id}>
+                      testsuite.tests.map((test, key) => (
+                        <tr key={key}>
                           <td className="text-danger">
                             <i className="tim-icons icon-alert-circle-exc" />
                           </td>
                           <td>{testsuite.id}</td>
                           <td>{testsuite.url}</td>
                           <td>{formatDate(test.created)}</td>
-                          <td className="text-center">{test.code}</td>
+                          <td className="text-center">
+                            <Link
+                              to={{
+                                pathname: "/solutions",
+                                hash: `#solution__${test.code.toLowerCase()}`,
+                              }}
+                            >
+                              {test.code}
+                            </Link>
+                          </td>
                         </tr>
                       ))
                     )}

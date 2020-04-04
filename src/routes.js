@@ -18,7 +18,7 @@
 import Icons from "views/Icons.jsx";
 import Notifications from "views/Notifications.jsx";
 import Tests from "views/Tests";
-import Solution from "./views/Solutions";
+import Solution from "./views/Solutions/Solutions";
 import UserProfile from "views/UserProfile.jsx";
 
 const routes = [
