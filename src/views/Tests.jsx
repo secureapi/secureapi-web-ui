@@ -7,20 +7,22 @@ import {
   CardTitle,
   Table,
   Row,
-  Col
+  Col,
 } from "reactstrap";
 
-import api from 'api';
-import StoreProvider, { actions, selectors } from 'store/StoreProvider';
+import api from "api";
+import StoreProvider, { actions, selectors } from "store/StoreProvider";
 
-const Tests = ({ setTests, tests }) => {
+const Tests = () => {
+  const dispatch = StoreProvider.useDispatch();
+  const tests = StoreProvider.useSelector(selectors.tests.list);
+
   useEffect(() => {
-    api.resources.getUserTests()
-      .then(({ data }) => {
-        setTests(data)
-      })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    api.resources.getUserTests().then(({ data }) => {
+      dispatch(actions.tests.setTests(data));
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="content">
@@ -32,55 +34,45 @@ const Tests = ({ setTests, tests }) => {
               <p className="category">We keep only failed tests.</p>
             </CardHeader>
             <CardBody>
-              {
-                tests.length > 0 ? (
-                  <Table className="tablesorter" responsive>
-                    <thead className="text-primary">
-                      <tr>
-                        <th>Suite ID</th>
-                        <th>Test Code</th>
-                        <th>Tested URL</th>
-                        <th>Result</th>
-                        <th>Timestamp</th>
-                        <th className="text-center">Solution</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {
-                        tests.map(testsuite => (
-                            testsuite.tests.map(test =>
+              {tests.length > 0 ? (
+                <Table className="tablesorter" responsive>
+                  <thead className="text-primary">
+                    <tr>
+                      <th>Suite ID</th>
+                      <th>Test Code</th>
+                      <th>Tested URL</th>
+                      <th>Result</th>
+                      <th>Timestamp</th>
+                      <th className="text-center">Solution</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {tests.map((testsuite) =>
+                      testsuite.tests.map((test) => (
                         <tr key={testsuite.id}>
                           <td>{testsuite.id}</td>
                           <td>{test.code}</td>
                           <td>{testsuite.url}</td>
                           <td className="text-danger">
-                            <i className="tim-icons icon-alert-circle-exc"/>
+                            <i className="tim-icons icon-alert-circle-exc" />
                             {test.result}
                           </td>
                           <td>{test.created}</td>
                           <td className="text-center">{test.code}</td>
                         </tr>
-                        )))
-                      }
-                    </tbody>
-                  </Table>
-                ) : (
-                  <p>They all pass. Congratulations!</p>
-                )
-              }
+                      ))
+                    )}
+                  </tbody>
+                </Table>
+              ) : (
+                <p>They all pass. Congratulations!</p>
+              )}
             </CardBody>
           </Card>
         </Col>
       </Row>
     </div>
   );
-}
+};
 
-export default StoreProvider.connect(
-  state => ({
-    tests: selectors.tests.list(state)
-  }),
-  {
-    setTests: actions.tests.setTests
-  }
-)(Tests);
+export default Tests;

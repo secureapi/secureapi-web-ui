@@ -1,6 +1,10 @@
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .p-login {
@@ -12,7 +16,7 @@
       opacity: 1;
       position: relative;
 
-      .fas.fa-spinner{
+      .fas.fa-spinner {
         position: absolute;
         left: 0;
         right: 0;
@@ -23,14 +27,11 @@
     }
   }
 
-  .card-user{
+  .card-user {
     margin-top: 2rem;
   }
 
-  .fa-key {
-    font-size: 92px;
-    margin-bottom: 2rem;
-    color: white;
+  .logo {
     z-index: 1;
     position: relative;
   }

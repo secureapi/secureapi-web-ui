@@ -1,20 +1,3 @@
-/*!
-
-=========================================================
-* Black Dashboard React v1.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/black-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/black-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 /*eslint-disable*/
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
@@ -27,7 +10,7 @@ import PerfectScrollbar from "perfect-scrollbar";
 // reactstrap components
 import { Nav } from "reactstrap";
 
-import StoreProvider, { actions } from 'store/StoreProvider'
+import StoreProvider, { actions } from "store/StoreProvider";
 
 var ps;
 
@@ -44,7 +27,7 @@ class Sidebar extends React.Component {
     if (navigator.platform.indexOf("Win") > -1) {
       ps = new PerfectScrollbar(this.refs.sidebar, {
         suppressScrollX: true,
-        suppressScrollY: false
+        suppressScrollY: false,
       });
     }
   }
@@ -70,7 +53,7 @@ class Sidebar extends React.Component {
             onClick={this.props.toggleSidebar}
           >
             <div className="logo-img">
-              <img src={require("assets/img/logo64.png")}/>
+              <img src={require("assets/img/logo64.png")} />
             </div>
           </a>
         );
@@ -162,7 +145,7 @@ class Sidebar extends React.Component {
 Sidebar.defaultProps = {
   rtlActive: false,
   bgColor: "blue",
-  routes: [{}]
+  routes: [{}],
 };
 
 Sidebar.propTypes = {
@@ -181,13 +164,10 @@ Sidebar.propTypes = {
     // the text of the logo
     text: PropTypes.node,
     // the image src of the logo
-    imgSrc: PropTypes.string
-  })
+    imgSrc: PropTypes.string,
+  }),
 };
 
-export default StoreProvider.connect(
-  null,
-  {
-    logoutUser: actions.user.clearUser
-  }
-)(Sidebar);
+export default StoreProvider.connect(null, {
+  logoutUser: actions.user.clearUser,
+})(Sidebar);

@@ -1,21 +1,16 @@
-import * as React from 'react';
+import * as React from "react";
 
-import StoreProvider, { selectors } from 'store/StoreProvider'
-import ConditionalRoute from './ConditionalRoute';
+import StoreProvider, { selectors } from "store/StoreProvider";
+import ConditionalRoute from "./ConditionalRoute";
 
-const { connect } = StoreProvider
+const UserUserProtectedRoute = ({ ...props }) => {
+  const isSignedIn = StoreProvider.useSelector(selectors.user.isSignedIn);
 
-const UserUserProtectedRoute = ({
-  isSignedIn,
-  ...props
-}) => (
-  <ConditionalRoute isConditionSatisfied={isSignedIn} {...props} />
-);
-
-UserUserProtectedRoute.defaultProps = {
-  config: { redirectTo: '/login' }
+  return <ConditionalRoute isConditionSatisfied={isSignedIn} {...props} />;
 };
 
-export default connect(state => ({
-  isSignedIn: selectors.user.isSignedIn(state)
-}))(UserUserProtectedRoute);
+UserUserProtectedRoute.defaultProps = {
+  config: { redirectTo: "/login" },
+};
+
+export default UserUserProtectedRoute;
