@@ -75,7 +75,9 @@ const Tests = () => {
                   </tbody>
                 </Table>
               ) : (
-                <p>They all pass. Congratulations!</p>
+                <p>You haven't run any tests yet or they all have passed.
+                <br/><a href="https://github.com/hidalgopl/sailor" target="_blank" rel="noopener noreferrer"> Learn how to run you first test</a> </p>
+
               )}
             </CardBody>
           </Card>
