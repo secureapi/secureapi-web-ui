@@ -1,0 +1,16 @@
+.tests-page {
+  table {
+    tbody {
+      tr {
+        td {
+          &.text-danger {
+            color: var(--red) !important;
+            font-weight: 700;
+            width: 30px;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}

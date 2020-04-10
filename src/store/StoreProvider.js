@@ -1,19 +1,19 @@
-import React from 'react';
+import React from "react";
 import {
   connect,
   Provider,
   useSelector,
   useDispatch,
-  useStore
-} from 'react-redux';
-import { PersistGate } from 'redux-persist/lib/integration/react';
-import storage from 'redux-persist/lib/storage';
+  useStore,
+  shallowEqual,
+} from "react-redux";
+import { PersistGate } from "redux-persist/lib/integration/react";
+import storage from "redux-persist/lib/storage";
 
-import store, { persistor } from './store';
+import store, { persistor } from "./store";
 
-import user from './modules/user'
-import tests from './modules/tests'
-
+import user from "./modules/user";
+import tests from "./modules/tests";
 
 const StoreProvider = ({ children }) => (
   <Provider store={store}>
@@ -23,13 +23,13 @@ const StoreProvider = ({ children }) => (
 
 export const actions = {
   user: user.actions,
-  tests: tests.actions
-}
+  tests: tests.actions,
+};
 
 export const selectors = {
   user: user.selectors,
-  tests: tests.selectors
-}
+  tests: tests.selectors,
+};
 
 export default {
   storage,
@@ -37,5 +37,6 @@ export default {
   useSelector,
   useDispatch,
   useStore,
+  shallowEqual,
   Provider: StoreProvider,
 };

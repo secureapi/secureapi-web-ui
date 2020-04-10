@@ -1,0 +1,17 @@
+table {
+  tr {
+    &.active {
+      background: var(--info);
+      font-weight: 700;
+
+      a {
+        color: var(--dark);
+        font-weight: 700;
+
+        &:hover {
+          color: var(--gray-dark);
+        }
+      }
+    }
+  }
+}

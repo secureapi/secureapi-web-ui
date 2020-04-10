@@ -13,28 +13,28 @@ import {
   Col,
 } from "reactstrap";
 
-import { getGravatarURL } from 'utils';
-import api from 'api';
-import StoreProvider, { actions, selectors } from 'store/StoreProvider';
+import { getGravatarURL } from "utils";
+import api from "api";
+import StoreProvider, { actions, selectors } from "store/StoreProvider";
 
-const UserProfile = ({ profile, setUserProfile }) => {
+const UserProfile = () => {
+  const dispatch = StoreProvider.useDispatch();
+  const profile = StoreProvider.useSelector(selectors.user.profile);
+
   useEffect(() => {
-    api.resources.getUserProfile()
-      .then(({ data }) => {
-        setUserProfile(data)
-      })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    api.resources.getUserProfile().then(({ data }) => {
+      dispatch(actions.user.setUserProfile(data));
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    api.resources.updateUserProfile(new FormData(e.target))
-      .then(({ data }) => {
-        setUserProfile(data)
-      })
-  }
+    api.resources.updateUserProfile(new FormData(e.target)).then(({ data }) => {
+      dispatch(actions.user.setUserProfile(data));
+    });
+  };
 
-  
   return (
     <div className="content">
       <Row>
@@ -42,29 +42,27 @@ const UserProfile = ({ profile, setUserProfile }) => {
           <Card className="card-user">
             <Form onSubmit={onSubmit}>
               <CardBody>
-                <CardText/>
+                <CardText />
                 <div className="author">
-                  <div className="block block-one"/>
-                  <div className="block block-two"/>
-                  <div className="block block-three"/>
-                  <div className="block block-four"/>
+                  <div className="block block-one" />
+                  <div className="block block-two" />
+                  <div className="block block-three" />
+                  <div className="block block-four" />
                   <div>
                     <img
-                      alt="..."
+                      alt="User avatar"
                       className="avatar"
                       src={getGravatarURL(profile.email)}
                     />
                   </div>
                   <p className="description">
-                  {
-                    profile.first_name ? (
-                      `${profile.first_name} ${profile.last_name}`
-                    ) : profile.username
-                  }
+                    {profile.first_name
+                      ? `${profile.first_name} ${profile.last_name}`
+                      : profile.username}
                   </p>
                 </div>
                 <div className="card-description">
-                <h5 className="title">Edit Profile</h5>
+                  <h5 className="title">Edit Profile</h5>
                   <Row>
                     <Col className="pr-md-1" md="3">
                       <FormGroup>
@@ -79,10 +77,12 @@ const UserProfile = ({ profile, setUserProfile }) => {
                     </Col>
                     <Col className="pl-md-1" md="4">
                       <FormGroup>
-                        <label htmlFor="exampleInputEmail1">
-                          Email
-                        </label>
-                        <Input defaultValue={profile.email} name="email" type="email"/>
+                        <label htmlFor="exampleInputEmail1">Email</label>
+                        <Input
+                          defaultValue={profile.email}
+                          name="email"
+                          type="email"
+                        />
                       </FormGroup>
                     </Col>
                   </Row>
@@ -135,14 +135,7 @@ const UserProfile = ({ profile, setUserProfile }) => {
         </Col>
       </Row>
     </div>
-  )
-}
+  );
+};
 
-export default StoreProvider.connect(
-  state => ({
-    profile: selectors.user.profile(state)
-  }),
-  {
-    setUserProfile: actions.user.setUserProfile
-  }
-)(UserProfile);
+export default UserProfile;
