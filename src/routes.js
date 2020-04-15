@@ -29,6 +29,7 @@ const routes = [
     icon: "tim-icons icon-refresh-02",
     component: Tests,
     layout: "dashboard",
+    isActive: true,
   },
   {
     path: "/user-profile",
@@ -37,6 +38,7 @@ const routes = [
     icon: "tim-icons icon-single-02",
     component: UserProfile,
     layout: "dashboard",
+    isActive: true,
   },
   {
     path: "/solutions",
@@ -45,6 +47,7 @@ const routes = [
     icon: "tim-icons icon-bulb-63",
     component: Solution,
     layout: "dashboard",
+    isActive: true,
   },
   {
     path: "/subscription",
@@ -53,6 +56,7 @@ const routes = [
     icon: "tim-icons icon-money-coins",
     component: Icons,
     layout: "dashboard",
+    isActive: false,
   },
   {
     path: "/feedback",
@@ -61,6 +65,7 @@ const routes = [
     icon: "tim-icons icon-send",
     component: Notifications,
     layout: "dashboard",
+    isActive: true,
   },
 ];
 export default routes;

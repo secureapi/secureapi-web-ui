@@ -3,6 +3,7 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 // nodejs library to set properties for components
 import { PropTypes } from "prop-types";
+import classNames from "classnames";
 
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
@@ -21,7 +22,7 @@ class Sidebar extends React.Component {
   }
   // verifies if routeName is the one active (in browser input)
   activeRoute(routeName) {
-    return this.props.location.pathname.indexOf(routeName) > -1 ? "active" : "";
+    return this.props.location.pathname.indexOf(routeName) > -1;
   }
   componentDidMount() {
     if (navigator.platform.indexOf("Win") > -1) {
@@ -104,15 +105,17 @@ class Sidebar extends React.Component {
               if (prop.redirect) return null;
               return (
                 <li
-                  className={
-                    this.activeRoute(prop.path) +
-                    (prop.pro ? " active-pro" : "")
-                  }
+                  className={classNames({
+                    active: this.activeRoute(prop.path),
+                    "active-pro": prop.pro,
+                  })}
                   key={key}
                 >
                   <NavLink
-                    to={prop.path}
-                    className="nav-link"
+                    to={prop.isActive ? prop.path : "#"}
+                    className={classNames("nav-link", {
+                      disabled: !prop.isActive,
+                    })}
                     activeClassName="active"
                     onClick={this.props.toggleSidebar}
                   >
