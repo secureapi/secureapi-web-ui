@@ -75,8 +75,10 @@ const Tests = () => {
                   </tbody>
                 </Table>
               ) : (
-                <p>You haven't run any tests yet or they all have passed.
-                <br/><a href="https://github.com/hidalgopl/sailor" target="_blank" rel="noopener noreferrer"> Learn how to run you first test</a> </p>
+                <p>
+                  <h5>It's that easy to run your first test suite</h5>
+                  <img src={require("assets/img/empty_demo.gif")} alt="sailor demo" width="50%"/>
+                <br/><a href="https://github.com/hidalgopl/sailor" target="_blank" rel="noopener noreferrer">Try it now!</a> </p>
 
               )}
             </CardBody>
