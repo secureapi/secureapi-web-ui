@@ -75,7 +75,7 @@ const Login = ({ history, match: { params }, location: { search } }) => {
                 </div>
                 <p className="description"></p>
               </div>
-              <div className="card-description">
+              <div className="card-description" align="center">
                 Developer's security toolbox.
               </div>
             </CardBody>
