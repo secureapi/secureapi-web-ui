@@ -100,6 +100,7 @@ const Login = ({ history, match: { params }, location: { search } }) => {
                   </Button>
                 </div>
               )}
+              <p>By signing in with Github you agree on <a href={'https://blog.secureapi.dev/terms-of-use'}>Terms of Use</a></p>
             </CardFooter>
           </Card>
         </Col>
