@@ -65,7 +65,7 @@ const routes = [
     icon: "tim-icons icon-send",
     component: Notifications,
     layout: "dashboard",
-    isActive: true,
+    isActive: false,
   },
 ];
 export default routes;

@@ -123,7 +123,7 @@ class Dashboard extends React.Component {
             routes={routes}
             bgColor={this.state.backgroundColor}
             logo={{
-              outterLink: "https://www.secureapi.dev",
+              outterLink: "https://app.secureapi.dev",
               text: "SecureAPI",
               imgSrc: logo,
             }}
