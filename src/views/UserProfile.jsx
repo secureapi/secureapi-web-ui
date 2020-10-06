@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import {
   Button,
@@ -11,13 +11,17 @@ import {
   Input,
   Row,
   Col,
+  Tooltip,
 } from "reactstrap";
+import NotificationAlert from "react-notification-alert";
 
 import { getGravatarURL } from "utils";
 import api from "api";
 import StoreProvider, { actions, selectors } from "store/StoreProvider";
 
 const UserProfile = () => {
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+  const notificationRef = useRef(null);
   const dispatch = StoreProvider.useDispatch();
   const profile = StoreProvider.useSelector(selectors.user.profile);
 
@@ -35,8 +39,39 @@ const UserProfile = () => {
     });
   };
 
+  const copyToClipboard = () => {
+    const accessKeyInput = document.createElement("textarea");
+    accessKeyInput.value = profile.access_key;
+    document.body.appendChild(accessKeyInput);
+    accessKeyInput.select();
+    accessKeyInput.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    document.body.removeChild(accessKeyInput);
+
+    const options = {
+      place: "tr",
+      message: (
+        <div>
+          <div>
+            <b>Access key</b> has been successfully saved to the{" "}
+            <b>clipboard</b>.
+          </div>
+        </div>
+      ),
+      type: "info",
+      icon: "tim-icons icon-notes",
+      autoDismiss: 7,
+      closeButton: false,
+    };
+
+    notificationRef.current.notificationAlert(options);
+  };
+
   return (
     <div className="content">
+      <div className="react-notification-alert-container">
+        <NotificationAlert ref={notificationRef} />
+      </div>
       <Row>
         <Col md="8">
           <Card className="card-user">
@@ -114,11 +149,27 @@ const UserProfile = () => {
                     <Col className="pr-md-1" md="8">
                       <FormGroup>
                         <label>Access Key</label>
+                        <i
+                          id="copy-to-clipboard"
+                          style={{ marginLeft: "0.5rem", cursor: "pointer" }}
+                          className="tim-icons icon-notes"
+                          onClick={copyToClipboard}
+                        />
+                        <Tooltip
+                          placement="top"
+                          target="copy-to-clipboard"
+                          isOpen={tooltipOpen}
+                          toggle={() => setTooltipOpen(!tooltipOpen)}
+                        >
+                          Copy
+                        </Tooltip>
                         <Input
                           readOnly
+                          style={{ cursor: "copy" }}
                           cols="40"
                           defaultValue={profile.access_key}
                           type="textarea"
+                          onClick={copyToClipboard}
                         />
                       </FormGroup>
                     </Col>
