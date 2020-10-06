@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { createBrowserHistory } from "history";
 import { Router, Route, Switch } from "react-router-dom";
+import { createBrowserHistory } from "history";
 import Rollbar from "rollbar";
 
 import DashboardLayout from "layouts/Dashboard/Dashboard";
@@ -14,8 +14,6 @@ import "assets/scss/black-dashboard-react.scss";
 import "assets/demo/demo.css";
 import "assets/css/nucleo-icons.css";
 
-const hist = createBrowserHistory();
-
 if (env.ROLLBAR_ACCESS_TOKEN) {
   new Rollbar({
     accessToken: env.ROLLBAR_ACCESS_TOKEN,
@@ -26,6 +24,8 @@ if (env.ROLLBAR_ACCESS_TOKEN) {
     },
   });
 }
+
+const hist = createBrowserHistory();
 
 ReactDOM.render(
   <StoreProvider.Provider>

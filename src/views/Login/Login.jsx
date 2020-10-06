@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 import {
   Button,
   Card,
@@ -14,15 +15,22 @@ import { v4 as uuid } from "uuid";
 
 import api from "api";
 import env from "variables/env";
+import { COOKIES } from "variables/consts";
 import StoreProvider, { actions } from "store/StoreProvider";
 
 import "./Login.scss";
 
-const Login = ({ history, match: { params }, location: { search } }) => {
+const Login = ({ match: { params }, location: { search } }) => {
   const [isProcessing, setIsProcessing] = useState(false);
   const dispatch = StoreProvider.useDispatch();
 
   useEffect(() => {
+    const { redirect } = queryString.parse(search);
+    if (redirect) {
+      Cookies.set(COOKIES.REDIRECT, redirect);
+    } else {
+      Cookies.remove(COOKIES.REDIRECT);
+    }
     if (params.platform) {
       const { code, state } = queryString.parse(search);
 
@@ -37,7 +45,6 @@ const Login = ({ history, match: { params }, location: { search } }) => {
             })
             .then(({ data: { token } }) => {
               dispatch(actions.user.setToken(token));
-              history.push("/");
             })
             .finally(() => {
               setIsProcessing(false);
@@ -100,7 +107,12 @@ const Login = ({ history, match: { params }, location: { search } }) => {
                   </Button>
                 </div>
               )}
-              <p>By signing in with Github you agree on <a href={'https://blog.secureapi.dev/terms-of-use'}>Terms of Use</a></p>
+              <p>
+                By signing in with Github you agree on{" "}
+                <a href={"https://blog.secureapi.dev/terms-of-use"}>
+                  Terms of Use
+                </a>
+              </p>
             </CardFooter>
           </Card>
         </Col>
